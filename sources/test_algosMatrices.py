@@ -28,11 +28,8 @@ def test_hors_zone(matrice):
 
 def test_zone(matrice):
     dep = Pixel(1, 1)
-    res = set()
-    res.update({Pixel(1, 0), Pixel(1, 1), Pixel(1, 2), Pixel(2, 0), Pixel(2, 1)})
-    function_call_result = croissance_region(matrice, dep)
-    assert function_call_result.issubset(res)
-    assert function_call_result.issuperset(res)
+    assert croissance_region(matrice, dep) == {Pixel(1, 0), Pixel(1, 1), Pixel(1, 2),
+                                               Pixel(2, 0), Pixel(2, 1)}
 
 
 def test_hors_matrice(matrice):
