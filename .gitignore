@@ -55,3 +55,4 @@ target/
 
 # IDE folder and files
 .idea/
+.DS_Store
