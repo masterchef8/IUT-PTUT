@@ -15,7 +15,7 @@
 \usepackage[a4paper,twoside]{geometry}
 \geometry{inner=3cm,outer=2.5cm,top=1.5cm,bottom=0.8cm,footskip=1.2cm,includeheadfoot,headheight=13.6pt}
 
-\title{Projet tutoré \\ \small\textit{Evaluation de mi-parcours}}
+\title{Projet tutoré \\ \small\textit{Évaluation de mi-parcours}}
 %\date{27/02/2014}
 
 \begin{document}
@@ -55,7 +55,7 @@ Tout d'abord, des réunions d'équipe en session plénière permettent de déter
 Ensuite, le travail s'effectue soit individuellement, soit en petits groupes de travail, quand le contexte est favorable, i.e. que du temps nous soit laissé à côté du planning de la formation, fort chargé au demeurant.
 Une part importante de notre travail implique le recours à des technologies qui nous sont mal connues. A ce titre, nous devons donc d'abord nous familiariser avec celles-ci en procédant à des essais.
 
-Par la suite, le développement proprement dit du code destiné à être inclus dans le livrable final est réalisé selon la méthode dite du \emph{\og Test Driven Development \fg}, qui consiste à écrire les tests pertinents relativement à la fonction remplie par une portion de code avant même l'écriture de celle-ci, et de vérifier que la production remplit effectivment lesdits tests.
+Par la suite, le développement proprement dit du code destiné à être inclus dans le livrable final est réalisé selon la méthode dite du \emph{\og Test Driven Development \fg}, qui consiste à écrire les tests pertinents relativement à la fonction remplie par une portion de code avant même l'écriture de celle-ci, et de vérifier que la production remplit effectivement lesdits tests.
 
 Le code en question est versionné \textit{via} un dépôt Git, centralisé sur un serveur Gitlab afin de permettre un accès aisé par chacun des contributeurs.
 Le système d'intégration continue TeamCity se charge ensuite de faire passer les tests sus-cités au code ainsi partagé afin de s'assurer que celui-ci :
@@ -71,14 +71,14 @@ Le langage de programmation Python a été retenu pour l'écriture de ce projet.
 	\item[NumPy] Sert à la manipulation d’environnements numériques et tabulaires complexes, notamment les collections de pixels des images SPOT
 	\item[PyBrain] Pour effectuer des tests sur des réseaux de neurones existants, afin d'en préparer notre propre implémentation
 	\item[OpenCV] Nous permet de manipuler les images SPOT
-	\item[GDAL] La \emph{Geospatial Data Abstraction Library} permet de gérer les données géographiques associées aux images SPOT. On utilisera également les bindings pour le langage Python, afin d'effectuer les liaisons \textit{inter se} des fonctions des modules Python et des fonctions natives complilées en C.
+	\item[GDAL] La \emph{Geospatial Data Abstraction Library} permet de gérer les données géographiques associées aux images SPOT. On utilisera également les bindings pour le langage Python, afin d'effectuer les liaisons \textit{inter se} des fonctions des modules Python et des fonctions natives compilées en C++.
 \end{description}
 
-En outre, le framework PyTest est utilisé pour l'éxécution des tests unitaires, et le processus de build et de gestion des dépendances est pris en charge par PyBuilder.
+En outre, le framework PyTest est utilisé pour l’exécution des tests unitaires, et le processus de build et de gestion des dépendances est pris en charge par PyBuilder.
 
 Tous ces outils étant totalement en dehors du cadre de la formation dispensée à l'IUT, nous avons dû consacrer un temps considérable à se documenter et à expérimenter sur iceux. Pour ce faire, nous avons essentiellement utilisé les documentations développeur et utilisateur, ainsi que d'autres ressources en ligne quand nous pouvions en trouver. A titre d'exemple, pour l'apprentissage du langage Python, nous avons pu nous référer aux cours proposés par des MOOCs, comme OpenClassroom (\textit{ex} Site du Zéro).
 
-\section{Etat du travail}
+\section{État du travail}
 \subsection{Avancement actuel}
 Ainsi que nous l'avons précédemment mentionné, nous avons dû faire face à un travail de recherche préliminaire que nous avions considérablement sous-estimé. En conséquence, le travail de codage du cœur applicatif est retardé d'autant. Actuellement, nous estimons entre six et dix semaines le retard induit par les recherches sur l'état de l'art et par le datamining des images SPOT.
 
