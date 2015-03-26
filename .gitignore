@@ -63,4 +63,45 @@ target/
 # documentSynthese.pages
 =======
 .DS_Store
+<<<<<<< HEAD
 >>>>>>> cb69bde7cb69d7624263d978c361e4c0a829053e
+=======
+
+### LaTeX ###
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc0
+*.nav
+*.nlo
+*.out
+*.pdfsync
+*.ps
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdy
+*.tdo
+*.tps
+*.tcp
+>>>>>>> a62fa09947afcaeec8203c3f51b71f13a16977b2

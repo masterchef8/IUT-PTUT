@@ -1,0 +1,15 @@
+﻿Fiche d'évaluation à mi-parcours du projet tuteuré de S3. 
+
+X 1. N° du sujet :
+X 2. Titre du sujet: 
+X 3. Nom des membres du groupe: 
+
+X 4. Résumez votre sujet de projet tuteuré.
+X 5. Décrivez en quelques lignes la méthodologie et les outils de gestion de projet que vous utilisez. 
+X 6. Comment sont répartis les rôles au sein du groupe (qui fait quoi) ?
+X 7. Présentez un planning (inutile de détailler) montrant ce qui a été fait jusqu'ici, ce qui vous reste à faire, et en quoi votre avancement actuel s'écarte du planning prévisionnel (s'il existe) que vous avez établi en début de projet.
+X 8. Quelles difficultés avez-vous rencontrées jusqu'ici ?
+X 9. Quels sont les problèmes à résoudre pour la suite et comment envisagez-vous de les résoudre ?
+X 10. Quelles technologies/langages utilisez-vous dans le cadre de ce projet ? Pour les technologies nouvelles pour vous (i.e. que vous n'avez pas apprises à l'IUT), expliquez comment vous vous êtes formés.
+X 11. Parmi tout ce que vous avez fait jusqu'à maintenant dans le cadre de votre projet, choisissez un point fort que vous souhaitez mettre en avant et détaillez-le (exemples : utilisation d'un framework spécifique, application d'une méthode Agile, lien avec un client du monde professionnel, effort particulier mis sur un aspect du projet tel que le design, etc.) 
+
