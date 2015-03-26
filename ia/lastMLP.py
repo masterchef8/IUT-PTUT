@@ -1,31 +1,26 @@
 # -*- coding: utf-8 -*- 
 
 """
-Project Name : Cortana 
-Created on December 30th 2013
 
 @author: Philippe Giraudeau
-Philippe Giraudeau <giraudeau.philip@gmail.com>
+Philippe Giraudeau <philippe@giraudeau.eu>
 """
-#=========================================================================================
-#	Cortana V1 
-#=========================================================================================
+
 #Modules
 import math
 import random
-import string
 import pylab as pl
 
 def rand(a, b):
     return (b-a)*random.random() + a
 
 # Number of neuron in Input, Hidden and output layer.
-LI = 20
-LH = 20
-LO = 5
-ITERATIONS = 2000 # Number of iterations during training step.
-PAS = 0.3 # pas d'apprentissage (Par défaut le laisser à 0.1).
-MOMENTUM = 0.1
+li = 24
+lh = 30
+lo = 1
+iterations = 2000 # Number of iterations during training step.
+pas = 0.3 # pas d'apprentissage (Par défaut le laisser à 0.1).
+momentum = 0.1
 
 # Others
 mErrorTesting = []
@@ -57,15 +52,18 @@ def summation(w, v):
 #=========================================================================================
 #    Network Class
 #=========================================================================================
-class brain:
-	def __init__ (self, LI, LH, LO) : 
+class Network:
+	def __init__ (self, li, lh, lo, pas, momentum, iterations) : 
 		# __init__ (initialise la class)
 		self.remp = 0.0 # Je sais pas si c'est une bonne idée mais c'est plus pratique
 		
-		self.li = LI 
-		self.lh = LH 
-		self.lo = LO
-		#checking(self.li)
+		self.li = li 
+		self.lh = lh 
+		self.lo = lo
+
+		self.iterations = iterations
+		self.momentum = momentum
+		self.pas = pas
 		
 		# create 2D weight matrix
 		self.wIH = mm(self.li, self.lh)
@@ -114,11 +112,6 @@ class brain:
 				sum = sum + self.aHL[j] * self.wHO[j][i]
 			self.aOL[i] = sigmoid(sum)
 		
-		#for i in range(len(self.aOL)):
-		#	if self.aOL[i] < 0.99:
-		#		self.aOL[i] = 1
-		#	else:
-		#		self.aOL[i] = 0
 		return self.aOL
 		
 	# backpropagation fct
@@ -143,7 +136,7 @@ class brain:
 				self.wIH[i][j] = self.wHO[i][j] + learningError*change + MOMENTUM*self.chgHO[i][j]
 				self.chgHO[i][j] = change
 
-		# Mise o jour des poids
+		# Mise à jour des poids
 		for i in range(self.li): # On parcours ...
 			for j in range(self.lh):
 				change = hidden_deltas[j]*self.aIL[i]
@@ -156,99 +149,28 @@ class brain:
 		return error
 
 		
-	def training(self, ITERATIONS, PAS, MOMENTUM): # Fonction d'entrainement utilisant la backpropagation
-		iterations = ITERATIONS
-		momentum = MOMENTUM
-		pas = PAS
-		#Le tableau retine contient les patterns d'activations ainsi que les réponses souhaitées
-		data = [
-        [[ 
-        0,1,1,0,
-        1,0,0,1,
-        1,1,1,1,
-        1,0,0,1,
-        1,0,0,1], [0,0,0,1,1]],
-        [[
-        1,1,1,1,
-        1,0,0,1,
-        1,1,1,1,
-        1,0,0,1,
-        1,1,1,1], [0,0,0,1,0]],
-        [[
-        1,1,1,1,
-        1,0,0,0,
-        1,0,0,0,
-        1,0,0,0,
-        1,1,1,1], [0,0,1,1,0]],
-        [[
-        1,1,1,0,
-        1,0,0,1,
-        1,0,0,1,
-        1,0,0,1,
-        1,1,1,0], [0,1,0,1,1]],
-        [[
-        1,1,1,1,
-        1,0,0,0,
-        1,1,1,0,
-        1,0,0,0,
-        1,1,1,1], [1,0,0,1,1]],
-        
-   	 	]
-		for i in range(iterations):
+	def training(self): # Fonction d'entrainement utilisant la backpropagation
+		for i in range(self.iterations):
 			error = self.remp
 			for d in data:
 				retine = d[0]
 				targets = d[1]
 				self.propa(retine)
-				error = error + self.backpropa(targets, pas, momentum)
+				error = error + self.backpropa(targets, self.pas, self.momentum)
 			mErrorTesting.append([error]) # Pour ploter les erreurs dans le graphique 
 			print('error %-.5f' % error)
 #=========================================================================================
 #    Testing
 #=========================================================================================
-def test():
-	patun = [
-        [[
-        1,1,1,1,
-        1,1,0,1,
-        1,0,1,1,
-        1,0,0,1,
-        1,1,1,1], [0,0,0,1,0]],
-        [[
-        1,1,1,1,
-        1,1,0,0,
-        0,0,0,0,
-        1,0,0,0,
-        1,1,1,1], [0,0,1,1,0]],
-        [[
-        1,1,1,0,
-        1,0,0,1,
-        0,0,0,1,
-        1,0,0,1,
-        1,0,1,0], [0,1,0,1,1]],
-        [[
-        1,1,1,1,
-        1,0,0,0,
-        1,0,1,0,
-        1,0,0,0,
-        1,1,1,1], [1,0,0,1,1]],
-        [[
-        0,0,1,1,
-        1,1,0,1,
-        1,1,1,1,
-        1,0,0,1,
-        1,0,0,1], [0,0,0,1,1]],
-        
-    ]
-	for p in patun:
-		print(p[0], p[1],'=>', br.propa(p[0]))
+
+
 		
 #=========================================================================================
 #    Plots
 #=========================================================================================
 if __name__ == '__main__':
-	br = brain(LI,LH,LO)
-	br.training(ITERATIONS, PAS, MOMENTUM)
+	network = Network(LI,LH,LO)
+	network.training(ITERATIONS, PAS, MOMENTUM)
 	test()
 	pl.plot(mErrorTesting, 'r', label='error during training', lw = 1)
 	pl.title('errors/iterations')

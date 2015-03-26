@@ -55,8 +55,12 @@ target/
 
 # IDE folder and files
 .idea/
+<<<<<<< HEAD
 
 # OsX spolight files - Desktop Services Store
 .DS_Store
 
 # documentSynthese.pages
+=======
+.DS_Store
+>>>>>>> cb69bde7cb69d7624263d978c361e4c0a829053e

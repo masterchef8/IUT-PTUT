@@ -1,0 +1,2 @@
+# Projet tutoré - IA  [![build status - Teamcity](https://tomcat.rabian.fr/TC/app/rest/builds/buildType:%28id:PtutIA_Mast%29/statusIcon)](https://tomcat.rabian.fr/TC/viewType.html?buildTypeId=PtutIA_Mast)
+Ce projet a pour but de reconnaître le niveau de pollution des bassins des Dombes à partir de données récupérées sur site et de l'apprentissage par un réseau de neurones.
