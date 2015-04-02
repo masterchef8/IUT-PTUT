@@ -61,6 +61,9 @@ target/
 .DS_Store
 
 # documentSynthese.pages
+# Images_Calees_CO
+/Images_Calees_CONFIDENTIELLES
+
 =======
 .DS_Store
 <<<<<<< HEAD
@@ -105,3 +108,4 @@ target/
 *.tps
 *.tcp
 >>>>>>> a62fa09947afcaeec8203c3f51b71f13a16977b2
+
