@@ -10,6 +10,7 @@ Philippe Giraudeau <philippe@giraudeau.eu>
 import math
 import random
 import pylab as pl
+import gdal as gd #
 
 def rand(a, b):
     return (b-a)*random.random() + a
@@ -55,12 +56,16 @@ def summation(w, v):
 class Network:
 	def __init__ (self, li, lh, lo, pas, momentum, iterations) : 
 		# __init__ (initialise la class)
-		self.remp = 0.0 # Je sais pas si c'est une bonne idée mais c'est plus pratique
 		
+		#variable de remplissage avec une valeur
+		self.remp = 0.0 
+		
+		# LI LH LO
 		self.li = li 
 		self.lh = lh 
 		self.lo = lo
 
+		#Les meta parametres du reseau de neurones
 		self.iterations = iterations
 		self.momentum = momentum
 		self.pas = pas
@@ -76,32 +81,41 @@ class Network:
 		self.aOL = [self.remp]*self.lo
 		#checking(self.maLO)
 		
-		for i in range(self.li):
+		# Les matrices qui vont stocker les delta 
+		self.output_deltas = [self.remp] * self.lo 
+		self.hidden_deltas = [self.remp] * self.lh
+
+		# On sauvegarde le dernier état des matrices. 
+		self.chgIH = self.wIH
+		self.chgHO = self.wIH
+		
+
+		"""
+		initialisation des poids des matrices avec des valeurs aléatoires comprises entre -0.2 et 0.2
+		On initialise la matrice Input-Hidden et la matrice Hidden-Output
+		"""
+		for i in range(self.li): 
 			for j in range(self.lh):
 				self.wIH[i][j] = rand(-0.2, 0.2)
 		for j in range(self.lh):
 			for k in range(self.lo):
 				self.wHO[j][k] = rand(-0.2, 0.2)
-                
-		# Save the last weights to compare with actual weights
-		self.chgIH = self.wIH
-		self.chgHO = self.wIH
-		
+        
 		
 	
-	# propagatation fct
+	# propagatation fonction
 	def propa (self, data):
 	
         # Starting with input layer
 		for i in range(self.li):
-			self.aIL[i] = data[i]
+			self.aIL[i] = # data[i] # On lui donne à manger un tableau de valeur.
 			
 		# hidden layer propagation
 		for i in range(self.li):
 			sum = self.remp
 			for j in range(self.lh):
 				#sum = sum + summation(self.aIL, self.wIH[i][j])
-				sum = sum + self.aIL[i] * self.wIH[i][j]
+			sum = sum + self.aIL[i] * self.wIH[i][j]
 			self.aHL[j] = sigmoid(sum)
 			
         # output layer propagation
@@ -116,13 +130,26 @@ class Network:
 		
 	# backpropagation fct
 	def backpropa(self, data, learningError, MOMENTUM):	  
-		output_deltas = [self.remp] * self.lo # On initialise la matrice output_deltas avec la valeur 0.0
-		for i in range(self.lo): # On parcours ...
-			error = data[i]-self.aOL[i] # ... les différences entre la target et la sortie réel est nommé 
+		"""	
+		On va parcourir la couche de sortie:
+			- la matrice d'erreur 'error' prend la différence entre ce que l'on veut 
+			obtenir et ce que le réseau obtiens. 
+			
+			- On calcul la dérivée de la fonction qui prend en parametre la 
+			sortie d'un neurone de la couche de sortie et qui multiplie ce résultat 
+			par l'erreur (error)
+
+		"""		
+		for i in range(self.lo):
+			error = """data[i]"""-self.aOL[i] # ... les différences entre la target et la sortie réel est nommé 
 			output_deltas[i] = dsigmoid(self.aOL[i]) * error # On utilise f', la dérivée de la f (sigmoid) 
-				
+		
+		"""
+		On parcours de la même façon la matrice entre la couche d'entrée et cachée:
+			On initialise la variable error.
+			Puis on parcours à nouveau 
+		"""
 		#On calcul la difference pour les poids de la couche cachée
-		hidden_deltas = [self.remp] * self.lh
 		for i in range(self.lh):
 			error = self.remp
 			for j in range(self.lo):
