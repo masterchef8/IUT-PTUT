@@ -20,10 +20,13 @@ import csv
 
 
 class LectureCSV:
-    def __init__(self):
+    def __init__(self, fichier):
+        """
+        :param fichier: le nom du fichier csv à importer
+        """
+        self.fichier = fichier
 
-
-    def importation(fichier):
+    def importation(self, fichier):
 
         """
         :param fichier: le nom du fichier csv à importer
@@ -48,4 +51,8 @@ class LectureCSV:
             f.close()
 
     return lacs
+
+    def creationClassLacs(self, lacs):
+        pass
+
 
