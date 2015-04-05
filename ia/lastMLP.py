@@ -134,7 +134,7 @@ class Network:
 		On va parcourir la couche de sortie:
 			- la matrice d'erreur 'error' prend la différence entre ce que l'on veut 
 			obtenir et ce que le réseau obtiens. 
-			
+
 			- On calcul la dérivée de la fonction qui prend en parametre la 
 			sortie d'un neurone de la couche de sortie et qui multiplie ce résultat 
 			par l'erreur (error)
@@ -147,9 +147,8 @@ class Network:
 		"""
 		On parcours de la même façon la matrice entre la couche d'entrée et cachée:
 			On initialise la variable error.
-			Puis on parcours à nouveau 
+			
 		"""
-		#On calcul la difference pour les poids de la couche cachée
 		for i in range(self.lh):
 			error = self.remp
 			for j in range(self.lo):
@@ -172,7 +171,7 @@ class Network:
 
 		error = self.remp
 		for i in range(len(data)):
-			error = error + 0.5*(data[i]-self.aOL[i])**2
+			error = error + 0.5*("""data[i]"""-self.aOL[i])**2
 		return error
 
 		

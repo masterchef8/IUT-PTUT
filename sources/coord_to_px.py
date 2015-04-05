@@ -1,12 +1,8 @@
-try:
-    from osgeo import gdal
-    from osgeo import osr
-except ImportError:
-    import gdal
-  
-import sys
+# -*- coding: utf-8 -*- 
 
 """
+Created by Phylante
+
 Input : longitude : float
 Input : latitude : float
 Input : filename : georeferenced image
@@ -15,6 +11,18 @@ Source : http://nullege.com/codes/show/src%40g%40d%40GDAL-1.10.0%40samples%40val
 
 Tells to which pixel in the dataset the coordinates belongs.
 """
+
+
+
+try:
+    from osgeo import gdal
+    from osgeo import osr
+except ImportError:
+    import gdal
+  
+import sys
+
+
   
 # =============================================================================
 def Usage():

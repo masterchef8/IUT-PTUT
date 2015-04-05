@@ -55,20 +55,15 @@ target/
 
 # IDE folder and files
 .idea/
-<<<<<<< HEAD
 
 # OsX spolight files - Desktop Services Store
 .DS_Store
 
 # documentSynthese.pages
-# Images_Calees_CO
-/Images_Calees_CONFIDENTIELLES
 
-=======
-.DS_Store
-<<<<<<< HEAD
->>>>>>> cb69bde7cb69d7624263d978c361e4c0a829053e
-=======
+# Philippe folders&files
+/Images_Calees_CONFIDENTIELLES
+/sources/lac.csv
 
 ### LaTeX ###
 *.acn
@@ -107,5 +102,4 @@ target/
 *.tdo
 *.tps
 *.tcp
->>>>>>> a62fa09947afcaeec8203c3f51b71f13a16977b2
 

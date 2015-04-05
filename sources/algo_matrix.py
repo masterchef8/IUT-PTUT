@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*- 
+
 """Stores functions and classes we could use for images computing
 without taking in account actual pixels but working with matrix. Images will
 probably only be treated as pixels arrays, so it will be easy to change.
