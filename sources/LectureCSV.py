@@ -7,7 +7,7 @@ __date__ = 05/04/2015
 """
 
 import csv
-
+import Lac
 
 #
 # Ouverture du fichier source.
@@ -26,33 +26,32 @@ class LectureCSV:
         """
         self.fichier = fichier
 
-    def importation(self, fichier):
+    def importation(self):
 
         """
         :param fichier: le nom du fichier csv à importer
         :return une liste de lac de tuples qui correspond aux différentes infos sur les lacs.
 
-        lacs = []
-        fichier = "lac.csv"
-        lacs = lectureCSV(fichier)
-        print lacs[0]
-        print lacs[1]
 
         """
         try:
-            with open(fichier, 'rb') as f:
+            with open(self.fichier, 'rb') as f:
                 reader = csv.reader(f, delimiter=';')
                 lacs = []
 
                 for row in reader:
                     lac = row
                     lacs.append(lac)
+
         finally:
             f.close()
-
-    return lacs
+        return lacs
 
     def creationClassLacs(self, lacs):
-        pass
+        """
+        Fonction qui créé une un tableau d'objet de type Lac.
+        :param lacs: prend un un tableau de lacs en argument
+        """
 
-
+        for i in lacs:
+            print i

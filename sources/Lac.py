@@ -15,7 +15,7 @@ class Lac:
     """
     compteur = 0 # Nombre d'instance de Lac.
 
-    def __init__(self, nom, code, lat, long, m2, chloMedian, chloMedSpring, chloFirst, chloSecond, chloThird, pxX, pxY, numLac):
+    def __init__(self, nom, code, lat, long, m2, chloMedian, chloMedSpring, chloFirst, chloSecond, chloThird, pxX, pxY, numLac,):
         """
         :type self: object
         :param nom: Nom du lac
@@ -38,6 +38,4 @@ class Lac:
 
         Lac.compteur += 1
         if Lac.compteur > numLac:
-            raise NumberLacInstanceExceed
-
-    
+            raise wrongNumberExeptions
