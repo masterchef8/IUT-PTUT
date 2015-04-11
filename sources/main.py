@@ -7,14 +7,11 @@ Création du main.
 """
 
 import LectureCSV as lec
-import coord_to_px
-import px_to_coord
+import coord_manipulation
 
 fichier = "lac.csv"
-
+text = "lecture"
 lacs = []
 lecture = lec.LectureCSV(fichier)
 
-lacs = lecture.importation()
-
-print(lacs[0])
+lecture.creationClassLacs()

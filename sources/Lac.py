@@ -6,16 +6,16 @@ Created by Somebody
 Friday 3 April 2015
 
 """
-
+import coord_manipulation
 
 
 class Lac:
     """
     Classe d'import et de stockage des données emmanant du .csv
     """
-    compteur = 0 # Nombre d'instance de Lac.
+    compteur = 0 #Nombre d'instance de Lac.
 
-    def __init__(self, nom, code, lat, long, m2, chloMedian, chloMedSpring, chloFirst, chloSecond, chloThird, pxX, pxY, numLac,):
+    def __init__(self, nom, code, lat, long, m2, chloMedian, chloMedSpring, chloFirst, chloSecond, chloThird):
         """
         :type self: object
         :param nom: Nom du lac
@@ -28,14 +28,18 @@ class Lac:
         :param chloFirst: taux de chlorophyll.a à la première date
         :param chloSecond: taux de chlorophyll.a à la deuxième date
         :param chloThird: taux de chlorophyll.a à la troisième date
-        :param pxX: pixel
-        :param numLac: Cette variable est destinée à eviter de définir des objets lac qui n'ont pas à exister
         """
-        self.nom = nom, self.code = code, self.lat = lat, self.long = long, self.m2 = m2
-        self.chloMedian = chloMedian, self.chloMedSpring = chloMedSpring, self.chloFirst = chloFirst
-        self.chloSecond = chloSecond, self.chloThird = chloThird, self.pxX = pxX
-        self.pxY = pxY, self.numLac = numLac
+        self.nom = nom, self.code = code, self.lat = lat, self.long = long, self.m2 = m2,
+        self.chloMedian = chloMedian, self.chloMedSpring = chloMedSpring, self.chloFirst = chloFirst,
+        self.chloSecond = chloSecond, self.chloThird = chloThird
 
+        """
         Lac.compteur += 1
         if Lac.compteur > numLac:
             raise wrongNumberExeptions
+
+        """
+        px1 = coord_to_px(long, lat )
+
+
+
