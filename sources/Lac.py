@@ -8,6 +8,15 @@ Friday 3 April 2015
 
 """
 
+class WrongNumberException(Exception):
+    """
+    j'ai du la déclarer pour laisser le raise ligne 60, mais je ne comprend pas son rôle.
+    Bon finalement je l'ai comment, yavait que ça pour que ça marche.
+    """
+    def __init__(self, valeur):
+        self.valeur = valeur
+        def __str__(self):
+            return repr(self.value)
 
 
 class Lac:
@@ -16,7 +25,12 @@ class Lac:
     """
     compteur = 0 # Nombre d'instances de Lac (membre static en Java).
 
-    def __init__(self, nom, code, latitude, longitude, surface, chloro_median, chloro_med_spring, chloro_first, chloro_second, chloro_third, px_X, px_Y, num_lac):
+    def __init__(
+        self, nom, code, latitude,
+        longitude, surface, chloro_median, chloro_median_spring,
+        chloro_first, chloro_second, chloro_third, px_X = None,
+        px_Y = None, num_lac = None):
+        #num_lac = None ne va pas avec "if Lac.compteur > num_lac:"
         """
         :type self: object
         :param nom: Nom du lac
@@ -25,7 +39,7 @@ class Lac:
         :param longitude: longitude du pixel du lac
         :param surface: surface du lac
         :param chloro_median: taux chlorophyll.a median
-        :param chloro_med_spring: taux chlorophyll.a median au rpintemps
+        :param chloro_median_spring: taux chlorophyll.a median au rpintemps
         :param chloro_first: taux de chlorophyll.a à la première date
         :param chloro_second: taux de chlorophyll.a à la deuxième date
         :param chloro_third: taux de chlorophyll.a à la troisième date
@@ -39,7 +53,7 @@ class Lac:
         self.longitude = longitude
         self.surface = surface
         self.chloro_median = chloro_median
-        self.chloro_med_spring = chloro_med_spring
+        self.chloro_median_spring = chloro_median_spring
         self.chloro_first = chloro_first
         self.chloro_second = chloro_second
         self.chloro_third = chloro_third
@@ -48,5 +62,5 @@ class Lac:
         self.num_lac = num_lac
 
         Lac.compteur += 1
-        if Lac.compteur > numLac:
-            raise WrongNumberExeption
+        #if Lac.compteur > num_lac:
+        #    raise WrongNumberException('WrongNumberException !!!')
