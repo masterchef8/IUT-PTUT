@@ -23,6 +23,11 @@ class LectureCSV:
         """
         self.fichier = fichier
 
+        self.fichier_Un = "../Images_Calees_CONFIDENTIELLES/20070406/06042007caletif.tif"
+        self.fichier_Deux = "../Images_Calees_CONFIDENTIELLES/20070805/050807caletif.tif"
+        self.fichier_Trois = "../Images_Calees_CONFIDENTIELLES/20071001/tif10102007calee.tif"
+
+
     def importation(self):
 
         """
@@ -48,7 +53,6 @@ class LectureCSV:
         Fonction qui créé une un tableau d'objet de type Lac.
         :param lacs: prend un un tableau de lacs en argument
         """
-        lacs = []
         tabLacs = []
         lacs = self.importation()
         for i, elt in enumerate(lacs):
@@ -56,4 +60,6 @@ class LectureCSV:
             tabLacs[i] = Lac.Lac(lacs[i][0], lacs[i][1], lacs[i][3],
                                  lacs[i][4], lacs[i][5], lacs[i][6],
                                  lacs[i][7], lacs[i][8], lacs[i][9],
-                                 lacs[i][10])
+                                 lacs[i][10], self.fichier_Un, self.fichier_Deux,
+                                 self.fichier_Trois)
+

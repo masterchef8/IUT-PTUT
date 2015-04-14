@@ -15,3 +15,5 @@ lacs = []
 lecture = lec.LectureCSV(fichier)
 
 lecture.creationClassLacs()
+
+
