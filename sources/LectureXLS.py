@@ -25,18 +25,22 @@ import Lac
 
 
 class LectureXLS:
-    def __init__(self, fichier):
+   def __init__(self, fichier):
         """
-        :param fichier: le nom du fichier csv à importer
+        :param fichier: le nom du fichier xls à importer
         """
         self.fichier = fichier
-        self.lacs = []
+
+        self.fichier_Un = '../Images_Calees_CONFIDENTIELLES/20070406/06042007caletif.tif'
+        self.fichier_Deux = '../Images_Calees_CONFIDENTIELLES/20070805/050807caletif.tif'
+        self.fichier_Trois = '../Images_Calees_CONFIDENTIELLES/20071001/tif10102007calee.tif'
+
 
     def importation(self):
         #Faudrait gerer les erreurs mosieur !
         
         with xlrd.open_workbook(self.fichier) as classeur:
-            page = classeur.sheet_by_index(0)#Feuille 1 du classeur
+            page = classeur.sheet_by_index(0) #Feuille 1 du classeur
             for ligne in range(page.nrows):
                 if(ligne == 0):
                     pass  #la première ligne est celle avec les en-têtes de colonnes
@@ -63,11 +67,18 @@ class LectureXLS:
                     ))
             return self.lacs
 
-    def creationClassLacs(self, lacs):
+    def creationClassLacs(self):
         """
         Fonction qui créé une un tableau d'objet de type Lac.
         :param lacs: prend un un tableau de lacs en argument
         """
+        tabLacs = []
+        lacs = self.importation()
+        for i, elt in enumerate(lacs):
+            print lacs[i][0]
+            tabLacs[i] = Lac.Lac(lacs[i][0], lacs[i][1], lacs[i][3],
+                                 lacs[i][4], lacs[i][5], lacs[i][6],
+                                 lacs[i][7], lacs[i][8], lacs[i][9],
+                                 lacs[i][10], self.fichier_Un, self.fichier_Deux,
+                                 self.fichier_Trois)
 
-        for i in lacs:
-            print i
