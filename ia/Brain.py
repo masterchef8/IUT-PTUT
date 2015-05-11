@@ -98,21 +98,7 @@ class Brain:
             for k in range(self.lo):
                 self.wHO[j][k] = rand(-0.2, 0.2)
 
-                # propagatation fonction
 
-
-    def mm(a, b):
-        """
-            Sample matrix maker
-            :param a:
-            :param b:
-            :return:
-            """
-        m = []
-        remp = 0.0
-        for i in range(a):
-            m.append([remp] * b)
-        return m
 
 
     def checking(*parem):
@@ -236,9 +222,8 @@ class Brain:
         Fonction d'entrainement utilisant la backpropagation
         """
         for i in range(self.iterations):
-            error = self.remp
-
-            retine = d[0]
+            error = 0.0
+            data = d[0]
             result = d[1]
             self.propagation(data)
             error = error + self.backpropa(targets, self.pas, self.momentum)
