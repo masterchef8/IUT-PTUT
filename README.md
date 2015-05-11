@@ -6,3 +6,13 @@ xlrd
 addresse : https://pypi.python.org/pypi/xlrd
 package : https://pypi.python.org/packages/source/x/xlrd/xlrd-0.9.3.tar.gz
 install : python setup.py install
+
+installation numpy
+pip2.7 ou pip ou pip2 :
+- install pandas
+- install numpy
+- install ipython
+- install matplotlib
+- install scipy
+- insall hyperopt
+- install sympy
