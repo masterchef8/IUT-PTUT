@@ -82,10 +82,8 @@ def coord_to_px(longitude, latitude, filename):
 
     # Build Spatial Reference object based on coordinate system,
     # fetched from the opened dataset
-    X = int(longitude)
-    Y = int(latitude)
-    print X
-    print Y
+    X = longitude
+    Y = latitude
     # Read geotransform matrix and calculate corresponding pixel coordinates
     geomatrix = ds.GetGeoTransform()
     (success, inv_geometrix) = gdal.InvGeoTransform(geomatrix)

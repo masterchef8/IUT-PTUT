@@ -16,3 +16,4 @@ pip2.7 ou pip ou pip2 :
 - install scipy
 - insall hyperopt
 - install sympy
+- install nose

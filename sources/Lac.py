@@ -9,6 +9,7 @@ Friday 3 April 2015
 """
 import coord_manipulation as cm
 import algo_matrix as am
+import Brain.py
 
 """
 class WrongNumberException(Exception):
@@ -94,4 +95,5 @@ class Lac:
         """
         Appel la classe NN (Neural Network)
         """
-        pass
+        Brain
+

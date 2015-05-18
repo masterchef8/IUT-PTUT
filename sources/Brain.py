@@ -12,6 +12,9 @@ import random
 import pylab as pl
 # import gdal as gd
 import numpy as np
+import hyperopt as hp
+import pickle as pkl
+import time as t
 
 
 def rand(a, b):
@@ -140,10 +143,10 @@ class Brain:
 
     def propagation(self, data):
         """
-
-            :param data: Inputs to feed Multi Layer Perceptron
-            :return:
-            """
+        TODO : Rien normalement
+        :param data: Inputs to feed Multi Layer Perceptron
+        :return:
+        """
         # On commence par propager l'information depuis la couche d'entrée
         for i in range(self.li):
             self.aLi[i] = data[i]
@@ -174,6 +177,7 @@ class Brain:
 
     def backpropagation(self, data, learningError, momentum):
         """
+        TODO : Rien normalement
         :param data : Les inputs du réseau
         :param learningError :  Le taux d'erreur
         :param momentum : Ce que l'on décide de changer en + ou - selon le taux d'erreur. Currently 0.2
@@ -219,6 +223,7 @@ class Brain:
 
     def training(self):
         """
+        TODO : Vérifier l'insertion des données
         Fonction d'entrainement utilisant la backpropagation
         """
         for i in range(self.iterations):
@@ -230,10 +235,31 @@ class Brain:
             mErrorTesting.append([error])  # Pour ploter les erreurs dans le graphique
             print('error %-.5f' % error)
 
+            return error
+
+    def trainHyperOpt(self):
+        """
+        TODO : Ecrire la fonction
+        Cette fonction va appeler trainning et récupérer son taux d'erreur.
+
+        Fonction d'entrainement utilisant HyperOpt avec la fonction standard de la librairie fmin
+        """
+
+    def pickle(self):
+        """
+        TODO : Ecrire la fonction
+
+        :return: retourne un pickle (un binaire de l'état de l'instance de la classe brain )
+        """
+
+
+
+
 
 if __name__ == '__main__':
     brain = Brain(li, lh, lo, iterations, pas, momentum)
-    test()
+
+    brain.trainHyperOpt()
 
     pl.plot(mErrorTesting, 'r', label='error during training', lw=1)
     pl.title('errors/iterations')

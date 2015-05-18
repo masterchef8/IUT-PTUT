@@ -34,7 +34,7 @@ class LectureXLS:
         self.fichier_Un = '../Images_Calees_CONFIDENTIELLES/20070406/06042007caletif.tif'
         self.fichier_Deux = '../Images_Calees_CONFIDENTIELLES/20070805/050807caletif.tif'
         self.fichier_Trois = '../Images_Calees_CONFIDENTIELLES/20071001/tif10102007calee.tif'
-
+        self.lacs = []
 
     def importation(self):
         #Faudrait gerer les erreurs mosieur !
@@ -44,7 +44,7 @@ class LectureXLS:
             for ligne in range(page.nrows):
                 if(ligne == 0):
                     pass  #la première ligne est celle avec les en-têtes de colonnes
-                
+
                 #Ce gros bloc est à clean il faut juste trouver le
                 #moyen de faire une boucle, une list comprehension
                 #ou autre, sachant qu'on utilise pas la colonne 3
@@ -70,7 +70,6 @@ class LectureXLS:
     def creationClassLacs(self):
         """
         Fonction qui créé une un tableau d'objet de type Lac.
-        :param lacs: prend un un tableau de lacs en argument
         """
         tabLacs = []
         lacs = self.importation()
