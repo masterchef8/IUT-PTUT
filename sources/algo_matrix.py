@@ -40,7 +40,7 @@ def region_growing(matrix, beginning):
 
 class Pixel:
     """Class used to represent a pixel with two coordinates."""
-    def __init__(self, vert, hor):
+    def __init__(self, vert, hor, red=-1, green=-1, blue=-1, alpha=-1):
         """Constructor
 
         :param vert: Vertical coordinate
@@ -49,6 +49,10 @@ class Pixel:
         self.hor = hor
         self.vert = vert
         self.region = False
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.alpha = alpha
 
     def compute_neighbours(self, height, width):
         """Computes the list of neighbouring pixels.
