@@ -117,7 +117,7 @@ class Pixel:
         return neighbours
 
     def __repr__(self):
-        return "Pixel ({}, {})".format(self.vert, self.hor)
+        return "Pixel ({}, {}, R={}, G={}, B={}, alpha={})".format(self.vert, self.hor, self.red, self.green, self.blue, self.alpha)
 
     def __eq__(self, other):
         if other is None or not isinstance(other, Pixel):

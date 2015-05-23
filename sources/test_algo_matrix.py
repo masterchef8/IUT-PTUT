@@ -38,3 +38,6 @@ def test_in_zone(matrix, seuil):
 def test_out_of_matrix(matrix, seuil):
     beginning = Pixel(15, 12)
     assert region_growing(matrix, beginning, seuil) is None
+
+def test_average_color(seuil):
+    avg = lakeAverageColor("img/test1.png", Pixel(214, 142), seuil)
