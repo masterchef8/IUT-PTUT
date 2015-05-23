@@ -9,7 +9,7 @@ Friday 3 April 2015
 """
 import coord_manipulation as cm
 import algo_matrix as am
-import Brain.py
+import Brain
 
 """
 class WrongNumberException(Exception):
