@@ -25,12 +25,9 @@ i = 0
 for image in liste_images:
     print image
     for lac in liste_lacs:
-        try:
-            x, y = coord_to_px(lac.longitude, lac.latitude, image)
-            print lac.longitude, "    ", lac.latitude
-            print lakeAverageColor(image, Pixel(x,y), 255)
-            print i
-            print ""
-            i+=1
-        except RuntimeError:
-            pass
+        x, y = coord_to_px(lac.longitude, lac.latitude, image)
+        print lac.longitude, "    ", lac.latitude
+        print lakeAverageColor(image, Pixel(x,y), 50)
+        print i
+        print ""
+        i+=1
