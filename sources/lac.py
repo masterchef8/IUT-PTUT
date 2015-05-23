@@ -53,3 +53,6 @@ class Lac:
         Lac.compteur += 1
 
 
+    def __repr__(self):
+        return "nom=" + self.nom + ", lat=" + str(self.latitude) + ", long=" + str(self.longitude)
+
