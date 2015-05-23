@@ -61,7 +61,7 @@ target/
 
 # documentSynthese.pages
 
-.ui
+*.ui
 .pyc
 
 # Philippe folders&files
