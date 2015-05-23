@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'FenouilMain.ui'
 #
-# Created: Sat May 23 18:02:20 2015
+# Created: Sat May 23 18:14:35 2015
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -81,9 +81,9 @@ class Ui_FenouilMain(object):
 
     def retranslateUi(self, FenouilMain):
         FenouilMain.setWindowTitle(_translate("FenouilMain", "Fenouil", None))
-        self.menuFile.setTitle(_translate("FenouilMain", "File", None))
-        self.menuProcess.setTitle(_translate("FenouilMain", "Process", None))
-        self.menuHelp.setTitle(_translate("FenouilMain", "Help", None))
+        self.menuFile.setTitle(_translate("FenouilMain", "&File", None))
+        self.menuProcess.setTitle(_translate("FenouilMain", "&Process", None))
+        self.menuHelp.setTitle(_translate("FenouilMain", "&?", None))
         self.actionOpen_image_file.setText(_translate("FenouilMain", "&Open image file", None))
         self.actionOpen_meta_data_file.setText(_translate("FenouilMain", "Open &meta-data file", None))
         self.actionQuit.setText(_translate("FenouilMain", "&Quit", None))
