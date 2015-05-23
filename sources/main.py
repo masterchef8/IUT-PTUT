@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
+"""
+hierarchie doit être :
+Ptut
+|-projetia
+| |-sources
+|   |-main_script_test.py
+|-Images_Calees_CONFIDENTIELLES/
+  |-Dombes-Carto-CONFIDENTIELLE.xls
 
 """
-__author__ = 'Somebody'
 
-Création du main.
-"""
+from lectureXLS import LectureXLS
+from lac import Lac
 
-import LectureCSV as lec
-import coord_manipulation
-import numpy as np
+fichier_xls = '../../Images_Calees_CONFIDENTIELLES/Dombes-Carto-CONFIDENTIELLE.xls'
 
+liste_lacs = LectureXLS(fichier_xls).importation()
 
-fichier = "lac.csv"
-text = "lecture"
-lacs = []
-lecture = lec.LectureCSV(fichier)
-
-lecture.creationClassLacs()
-
-
+for lac in liste_lacs:
+    print liste_lacs

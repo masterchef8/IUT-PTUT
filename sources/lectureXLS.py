@@ -12,7 +12,7 @@ __date__ = 05/04/2015
 """
 
 import xlrd
-import Lac
+import lac
 
 #
 # Ouverture du fichier source.
@@ -30,10 +30,6 @@ class LectureXLS:
         :param fichier: le nom du fichier xls à importer
         """
         self.fichier = fichier
-
-        self.fichier_Un = '../Images_Calees_CONFIDENTIELLES/20070406/06042007caletif.tif'
-        self.fichier_Deux = '../Images_Calees_CONFIDENTIELLES/20070805/050807caletif.tif'
-        self.fichier_Trois = '../Images_Calees_CONFIDENTIELLES/20071001/tif10102007calee.tif'
         self.lacs = []
 
     def importation(self):
@@ -50,7 +46,7 @@ class LectureXLS:
                 #ou autre, sachant qu'on utilise pas la colonne 3
                 #à voir, à refléchir. De plus les valeurs sont
                 #hardcoded ... bof hein :)
-                self.lacs.append(Lac.Lac(
+                self.lacs.append(lac.Lac(
                     page.cell_value(ligne, 0), #nom
                     page.cell_value(ligne, 1), #code
                     page.cell_value(ligne, 3), #latitude
@@ -60,10 +56,7 @@ class LectureXLS:
                     page.cell_value(ligne, 7), #chloro_median_spring
                     page.cell_value(ligne, 8), #chloro_first
                     page.cell_value(ligne, 9), #chloro_second
-                    page.cell_value(ligne, 10), #chloro_third
-                    0,
-                    0,
-                    ligne
+                    page.cell_value(ligne, 10) #chloro_third
                 ))
             return self.lacs
 
