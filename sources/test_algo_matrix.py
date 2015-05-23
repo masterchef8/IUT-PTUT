@@ -41,3 +41,9 @@ def test_out_of_matrix(matrix, seuil):
 
 def test_average_color(seuil):
     avg = lakeAverageColor("img/test1.png", Pixel(214, 142), seuil)
+    assert avg.vert == 214
+    assert avg.hor == 142
+    assert avg.red == 0
+    assert avg.green == 138
+    assert avg.blue == 167
+    assert avg.alpha == 0
