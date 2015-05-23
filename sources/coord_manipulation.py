@@ -41,6 +41,8 @@ def px_to_coord(abscissa, ordinate, filename):
     if filename is None:
         filename()
 
+    ds = None
+
     # Open input dataset
     try:
         ds = gdal.Open(filename, gdal.GA_ReadOnly)
@@ -70,6 +72,8 @@ def coord_to_px(longitude, latitude, filename):
         usage_coord_to_px()
     if filename is None:
         filename()
+
+    ds = None
 
     # Open input dataset
     try:
