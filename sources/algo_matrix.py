@@ -5,13 +5,15 @@ without taking in account actual pixels but working with matrix. Images will
 probably only be treated as pixels arrays, so it will be easy to change.
 """
 __author__ = 'Gabriel Augendre'
+from osgeo import gdal
+import numpy
 
-
-def region_growing(matrix, beginning):
+def region_growing(matrix, beginning, threshold):
     """Region growing algorithm adapted to our problem.
 
-    :param matrix: An array filled with zeros and ones (alpha layer).
+    :param matrix: 2D-array filled with alpha layer values.
     :param beginning: Start case coordinates.
+    :param threshold: Below this value, a pixel is considered as part of a lake
     :return: A list of pixels belonging to the region.
     """
     if len(matrix) == 0 or len(matrix[0]) == 0:
@@ -29,13 +31,48 @@ def region_growing(matrix, beginning):
     beginning.region = True
 
     for pixel in neighbouring_pixels:
-        if matrix[pixel.vert][pixel.hor] == 1 and not pixel.region:
+        if matrix[pixel.vert][pixel.hor] < threshold and not pixel.region:
             returned_set.add(pixel)
             pixel.region = True
             set(neighbouring_pixels).update(
                 pixel.compute_neighbours(len(matrix), len(matrix[0])))
 
     return returned_set
+
+def lakeAverageColor(path, beginning, threshold):
+    """Prepares the data for region growing algorithm, and computes the average color of the lake.
+
+    :param path: Path to image.
+    :param beginning: Start case coordinates.
+    :param threshold: Below this value, a pixel is considered as part of a lake
+    :return: A pixel with the coordinates of the beginning pixel and the average color of the lake.
+    """
+
+    dataset = gdal.Open(path, gdal.GA_ReadOnly)
+    RBand = dataset.GetRasterBand(1).ReadAsArray()
+    GBand = dataset.GetRasterBand(2).ReadAsArray()
+    BBand = dataset.GetRasterBand(3).ReadAsArray()
+    ABand = dataset.GetRasterBand(4).ReadAsArray()
+
+    region = region_growing(ABand, beginning, threshold)
+
+    cptPix = 0
+    sumR = 0
+    sumG = 0
+    sumB = 0
+    sumA = 0
+    for pixel in region:
+        sumR += RBand[pixel.vert][pixel.hor]
+        sumG += GBand[pixel.vert][pixel.hor]
+        sumB += BBand[pixel.vert][pixel.hor]
+        sumA += ABand[pixel.vert][pixel.hor]
+        cptPix += 1
+    avgR = sumR / cptPix
+    avgG = sumG / cptPix
+    avgB = sumB / cptPix
+    avgA = sumA / cptPix
+
+    return Pixel(beginning.vert, beginning.hor, avgR, avgG, avgB, avgA)
 
 
 class Pixel:
