@@ -20,7 +20,7 @@ def region_growing(matrix, beginning, threshold):
         return None
     if beginning.vert >= len(matrix) or beginning.hor >= len(matrix[0]):
         return None
-    if matrix[beginning.vert][beginning.hor] == 0:
+    if matrix[beginning.vert][beginning.hor] >= threshold:
         return None
 
     neighbouring_pixels = [beginning]
