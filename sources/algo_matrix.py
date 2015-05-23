@@ -7,11 +7,12 @@ probably only be treated as pixels arrays, so it will be easy to change.
 __author__ = 'Gabriel Augendre'
 
 
-def region_growing(matrix, beginning):
+def region_growing(matrix, beginning, threshold):
     """Region growing algorithm adapted to our problem.
 
-    :param matrix: An array filled with zeros and ones (alpha layer).
+    :param matrix: 2D-array filled with alpha layer values.
     :param beginning: Start case coordinates.
+    :param threshold: Below this value, a pixel is considered as part of a lake
     :return: A list of pixels belonging to the region.
     """
     if len(matrix) == 0 or len(matrix[0]) == 0:
@@ -29,7 +30,7 @@ def region_growing(matrix, beginning):
     beginning.region = True
 
     for pixel in neighbouring_pixels:
-        if matrix[pixel.vert][pixel.hor] == 1 and not pixel.region:
+        if matrix[pixel.vert][pixel.hor] < threshold and not pixel.region:
             returned_set.add(pixel)
             pixel.region = True
             set(neighbouring_pixels).update(
