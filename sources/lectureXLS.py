@@ -39,7 +39,7 @@ class LectureXLS:
             page = classeur.sheet_by_index(0) #Feuille 1 du classeur
             for ligne in range(page.nrows):
                 if(ligne == 0):
-                    pass  #la première ligne est celle avec les en-têtes de colonnes
+                    continue  #la première ligne est celle avec les en-têtes de colonnes
 
                 #Ce gros bloc est à clean il faut juste trouver le
                 #moyen de faire une boucle, une list comprehension

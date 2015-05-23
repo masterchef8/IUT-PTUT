@@ -43,7 +43,7 @@ def lakeAverageColor(path, beginning, threshold):
     """Prepares the data for region growing algorithm, and computes the average color of the lake.
 
     :param path: Path to image.
-    :param beginning: Start case coordinates.
+    :param beginning: Type = Pixel, Start case coordinates.
     :param threshold: Below this value, a pixel is considered as part of a lake
     :return: A pixel with the coordinates of the beginning pixel and the average color of the lake.
     """
@@ -61,6 +61,14 @@ def lakeAverageColor(path, beginning, threshold):
     sumG = 0
     sumB = 0
     sumA = 0
+
+    print Pixel(beginning.vert, beginning.hor, RBand[beginning.vert][beginning.hor],
+                GBand[beginning.vert][beginning.hor], BBand[beginning.vert][beginning.hor],
+                ABand[beginning.vert][beginning.hor])
+    print "Taille de la region : ", len(region)
+    print "Region :"
+    print region
+
     for pixel in region:
         sumR += RBand[pixel.vert][pixel.hor]
         sumG += GBand[pixel.vert][pixel.hor]
@@ -117,7 +125,8 @@ class Pixel:
         return neighbours
 
     def __repr__(self):
-        return "Pixel ({}, {})".format(self.vert, self.hor)
+        return "Pixel ({}, {}) val RGBA ({}, {}, {}, {})".format(self.vert, self.hor, self.red,
+                                                                 self.green, self.blue, self.alpha)
 
     def __eq__(self, other):
         if other is None or not isinstance(other, Pixel):
@@ -129,17 +138,3 @@ class Pixel:
         return hash((self.hor, self.vert))
 
 
-if __name__ == "__main__":
-    matrix = [[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1],
-              [1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1],
-              [1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-              [0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-              [1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0],
-              [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]
-    region = region_growing(matrix, Pixel(1, 1))
-    print(region)
-
-    print(Pixel(0, 0) == Pixel(0, 0))
-    print(Pixel(0, 0) == Pixel(0, 1))
