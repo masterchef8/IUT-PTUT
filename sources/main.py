@@ -15,7 +15,7 @@ from lac import Lac
 
 fichier_xls = '../../Images_Calees_CONFIDENTIELLES/Dombes-Carto-CONFIDENTIELLE.xls'
 
-liste_lacs = LectureXLS(fichier_xls).importation()
+liste_lacs = LectureXLS(fichier_xls).importation() # Maintenant, on a une belle liste de lacs avec leurs infos provenant du XLS.
 
 for lac in liste_lacs:
-    print liste_lacs
+    print lac
