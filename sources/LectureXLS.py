@@ -25,7 +25,7 @@ import Lac
 
 
 class LectureXLS:
-   def __init__(self, fichier):
+    def __init__(self, fichier):
         """
         :param fichier: le nom du fichier xls à importer
         """
@@ -38,7 +38,7 @@ class LectureXLS:
 
     def importation(self):
         #Faudrait gerer les erreurs mosieur !
-        
+
         with xlrd.open_workbook(self.fichier) as classeur:
             page = classeur.sheet_by_index(0) #Feuille 1 du classeur
             for ligne in range(page.nrows):
@@ -64,7 +64,7 @@ class LectureXLS:
                     0,
                     0,
                     ligne
-                    ))
+                ))
             return self.lacs
 
     def creationClassLacs(self):
