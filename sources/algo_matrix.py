@@ -45,7 +45,7 @@ def lakeAverageColor(path, beginning, threshold):
     :param path: Path to image.
     :param beginning: Start case coordinates.
     :param threshold: Below this value, a pixel is considered as part of a lake
-    :return: A list of pixels belonging to the region.
+    :return: A pixel with the coordinates of the beginning pixel and the average color of the lake.
     """
 
     dataset = gdal.Open(path, gdal.GA_ReadOnly)
