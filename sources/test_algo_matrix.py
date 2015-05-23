@@ -40,9 +40,10 @@ def test_out_of_matrix(matrix, seuil):
     assert region_growing(matrix, beginning, seuil) is None
 
 def test_average_color(seuil):
-    avg = lakeAverageColor("img/test1.png", Pixel(214, 142), seuil)
-    assert avg.vert == 214
-    assert avg.hor == 142
+    beginning = Pixel(214, 142)
+    avg = lakeAverageColor("img/test1.png", beginning, seuil)
+    assert avg.vert == beginning.vert
+    assert avg.hor == beginning.hor
     assert avg.red == 0
     assert avg.green == 138
     assert avg.blue == 167
