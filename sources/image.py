@@ -32,11 +32,11 @@ ABand = dataset.GetRasterBand(4).ReadAsArray()
     array = band.ReadAsArray()
     globalArray[x] = array'''
 
-nbLignes =  RBand.shape[0]
+'''nbLignes =  RBand.shape[0]
 nbColonnes = RBand.shape[1]
 
 tableau = numpy.empty([nbLignes, nbColonnes], dtype=object)
 for i in range(0, nbLignes - 1):
     for j in range(0, nbColonnes - 1):
         tableau[i][j] = Pixel(i, j, RBand[i][j], GBand[i][j], BBand[i][j], ABand[i][j])
-print tableau
+print tableau'''
