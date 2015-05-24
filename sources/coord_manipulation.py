@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 try:
     from osgeo import gdal
     from osgeo import osr
@@ -66,6 +67,13 @@ def px_to_coord(abscissa, ordinate, filename):
 
 
 def coord_to_px(longitude, latitude, filename):
+    """
+    Renvoie les coordonnées en pixels d'un point dans une image à partir de ses coordonnées GPS
+    :param longitude: float
+    :param latitude: float
+    :param filename: float
+    :return: Un couple de coordonnées en pixels.
+    """
     if longitude is None:
         usage_coord_to_px()
     if latitude is None:
