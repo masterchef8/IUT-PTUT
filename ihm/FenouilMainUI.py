@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'FenouilMain.ui'
 #
-# Created: Sat May 23 19:58:40 2015
+# Created: Fri May 29 12:42:11 2015
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -80,7 +80,7 @@ class Ui_FenouilMain(object):
         QtCore.QMetaObject.connectSlotsByName(FenouilMain)
 
     def retranslateUi(self, FenouilMain):
-        FenouilMain.setWindowTitle(_translate("FenouilMain", "Fenouil", None))
+        FenouilMain.setWindowTitle(_translate("FenouilMain", "Project Fenouil", None))
         self.menuFile.setTitle(_translate("FenouilMain", "&File", None))
         self.menuProcess.setTitle(_translate("FenouilMain", "&Process", None))
         self.menuHelp.setTitle(_translate("FenouilMain", "&?", None))
