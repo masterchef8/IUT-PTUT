@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'FenouilMain.ui'
 #
-# Created: Sat May 23 18:14:35 2015
+# Created: Sat May 23 19:58:40 2015
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -49,10 +49,10 @@ class Ui_FenouilMain(object):
         self.statusbar = QtGui.QStatusBar(FenouilMain)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         FenouilMain.setStatusBar(self.statusbar)
-        self.actionOpen_image_file = QtGui.QAction(FenouilMain)
-        self.actionOpen_image_file.setObjectName(_fromUtf8("actionOpen_image_file"))
-        self.actionOpen_meta_data_file = QtGui.QAction(FenouilMain)
-        self.actionOpen_meta_data_file.setObjectName(_fromUtf8("actionOpen_meta_data_file"))
+        self.actionOpenImageFile = QtGui.QAction(FenouilMain)
+        self.actionOpenImageFile.setObjectName(_fromUtf8("actionOpenImageFile"))
+        self.actionOpenMetaDataFile = QtGui.QAction(FenouilMain)
+        self.actionOpenMetaDataFile.setObjectName(_fromUtf8("actionOpenMetaDataFile"))
         self.actionQuit = QtGui.QAction(FenouilMain)
         self.actionQuit.setObjectName(_fromUtf8("actionQuit"))
         self.actionHelp = QtGui.QAction(FenouilMain)
@@ -63,8 +63,8 @@ class Ui_FenouilMain(object):
         self.action_Get_lake_pollution_index.setObjectName(_fromUtf8("action_Get_lake_pollution_index"))
         self.action_Register_new_lake = QtGui.QAction(FenouilMain)
         self.action_Register_new_lake.setObjectName(_fromUtf8("action_Register_new_lake"))
-        self.menuFile.addAction(self.actionOpen_image_file)
-        self.menuFile.addAction(self.actionOpen_meta_data_file)
+        self.menuFile.addAction(self.actionOpenImageFile)
+        self.menuFile.addAction(self.actionOpenMetaDataFile)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuProcess.addAction(self.action_Get_lake_pollution_index)
@@ -84,8 +84,8 @@ class Ui_FenouilMain(object):
         self.menuFile.setTitle(_translate("FenouilMain", "&File", None))
         self.menuProcess.setTitle(_translate("FenouilMain", "&Process", None))
         self.menuHelp.setTitle(_translate("FenouilMain", "&?", None))
-        self.actionOpen_image_file.setText(_translate("FenouilMain", "&Open image file", None))
-        self.actionOpen_meta_data_file.setText(_translate("FenouilMain", "Open &meta-data file", None))
+        self.actionOpenImageFile.setText(_translate("FenouilMain", "&Open image file", None))
+        self.actionOpenMetaDataFile.setText(_translate("FenouilMain", "Open &meta-data file", None))
         self.actionQuit.setText(_translate("FenouilMain", "&Quit", None))
         self.actionHelp.setText(_translate("FenouilMain", "&Help", None))
         self.actionAbout.setText(_translate("FenouilMain", "&About", None))
