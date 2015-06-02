@@ -16,18 +16,23 @@ from algo_matrix import *
 from coord_manipulation import *
 
 fichier_xls = '../Images_Calees_CONFIDENTIELLES/Dombes-Carto-CONFIDENTIELLE.xls'
-liste_images = ['../Images_Calees_CONFIDENTIELLES/20070406/06042007caletif.tif',
+liste_images = [
                 '../Images_Calees_CONFIDENTIELLES/20070805/050807caletif.tif',
                 '../Images_Calees_CONFIDENTIELLES/20071001/01102007bilicale.tif'
                 ]
 liste_lacs = LectureXLS(fichier_xls).importation()  # Maintenant, on a une belle liste de lacs avec leurs infos provenant du XLS.
 i = 0
+print "nom_image,lac.nom,lac.chloro_first,lac.chloro_second,lac.chloro_third,pixel.red,pixel.green,pixel.blue"
 for image in liste_images:
-    print image
     for lac in liste_lacs:
         x, y = coord_to_px(lac.longitude, lac.latitude, image)
-        print lac.longitude, "    ", lac.latitude
-        print lakeAverageColor(image, Pixel(x,y), 50)
-        print i
-        print ""
-        i+=1
+        chaine = str(image) + ","
+        chaine += str(lac.nom) + ","
+        chaine += str(lac.chloro_first) + ","
+        chaine += str(lac.chloro_second) + ","
+        chaine += str(lac.chloro_third) + ","
+        pixel = lakeAverageColor(image, Pixel(y, x), 50)
+        chaine += str(pixel.red) + ","
+        chaine += str(pixel.green) + ","
+        chaine += str(pixel.blue)
+        print chaine

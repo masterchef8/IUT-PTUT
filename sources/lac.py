@@ -22,6 +22,7 @@ class Lac:
     Classe d'import et de stockage des données emmanant du .csv
     """
     compteur = 0
+
     def __init__(
             self, nom, code, latitude,
             longitude, surface, chloro_median, chloro_median_spring,
@@ -52,7 +53,5 @@ class Lac:
 
         Lac.compteur += 1
 
-
     def __repr__(self):
         return "nom=" + self.nom + ", lat=" + str(self.latitude) + ", long=" + str(self.longitude)
-
