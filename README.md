@@ -12,12 +12,8 @@ pip2.7 ou pip ou pip2 :
 - install pandas
 - install numpy
 - install ipython
-- install matplotlib : sudo apt-get install python-matplotlib
+- install matplotlib
 - install scipy
-- insall hyperopt
-        git clone https://github.com/hyperopt/hyperopt-sklearn.git
-        cd hyperopt
-        pip install -e .
-
+- install hyperopt
 - install sympy
 - install nose
