@@ -86,13 +86,13 @@ for image in liste_images:
 print len(mPixelColor[0])
 print len(mDesired)
 inputLayerSize = len(mPixelColor[0])
-hiddenLayerSize = 23
+hiddenLayerSize = 5
 outputLayerSize = 1
-step = 0.9
-momentum = 0.00001
+step = 0.5
+momentum = 0.1
 iterations = 6000
 
-#brain = Brain(inputLayerSize, hiddenLayerSize, outputLayerSize, step, momentum, iterations)
+brain = Brain(inputLayerSize, hiddenLayerSize, outputLayerSize, step, momentum, iterations)
 
 mErrorTesting = brain.training(mPixelColor, mDesired)
 
