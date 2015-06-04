@@ -6,7 +6,7 @@ try:
 except ImportError:
     import gdal
   
-import sys
+import os as sys
 
 """
 Input : longitude : float
@@ -21,7 +21,7 @@ Tells to which pixel in the dataset the coordinates belongs.
 # =============================================================================
 def Usage():
     print 'Usage : px_to_coord abscissa ordinate filename'
-    sys.exit( 1 )
+    sys.exit(1)
   
 # =============================================================================
   

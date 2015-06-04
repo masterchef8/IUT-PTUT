@@ -10,11 +10,13 @@ Philippe Giraudeau <philippe@giraudeau.eu>
 import math
 import random
 import pylab as pl
-# import gdal as gd
-import numpy as np
-import hyperopt as hp
-import pickle as pkl
-import time as t
+
+
+def mm(I, J, fill=0.0):
+    m = []
+    for i in range(I):
+        m.append([fill]*J) # cree une cellule puis la multiplie par 3. Donc devient 2D.
+    return m
 
 
 def rand(a, b):
@@ -28,17 +30,12 @@ iterations = 2000  # Number of iterations during training step.
 pas = 0.3  # pas d'apprentissage (Par défaut le laisser à 0.1).
 momentum = 0.1
 
-data = np.array([0,1,1,1,0,0,1,0,
-                 0,1,1,1,0,0,1,0,
-                 0,1,1,1,0,0,1,0])
-result = np.array([])  # Valeur boolean (?)
-
 # Others
 mErrorTesting = []
 
 
 class Brain:
-    def __init__(self, lh, lo, pas, momentum, iterations, data):
+    def __init__(self, li, lh, lo, pas, momentum, iterations):
         """
         Cette classe permet de créer un perceptron multicouches à 3 couches.
 
@@ -54,9 +51,7 @@ class Brain:
         if (type(data) != np.ndarray ):
             raise ValueError("Error ")
         """
-        self.data = data
-        self.li = data.size
-
+        self.li = li
 
         # variable de remplissage avec une valeur
         self.remp = 0.0
@@ -104,6 +99,7 @@ class Brain:
 
 
 
+    @staticmethod
     def checking(*parem):
         """
             Useful if you are changing this file.
@@ -113,6 +109,7 @@ class Brain:
         print(parem)
 
 
+    @staticmethod
     def sigmoid(x):
         """
             sigmoid function used for calculate neurons activations
@@ -121,6 +118,7 @@ class Brain:
         return math.tanh(x)
 
 
+    @staticmethod
     def dsigmoid(y):
         """
             function which compute the sigmoid derivation used for backpropagation algorithm
@@ -130,6 +128,7 @@ class Brain:
         return 1.0 - y ** 2
 
 
+    @staticmethod
     def summation(w, v):
         """
             Used for summation propagation function
@@ -137,8 +136,8 @@ class Brain:
             :param v: Second var
             :return: summation between weight and values
             """
-        sum = sum + w * v
-        return sum
+        # sum = sum + w * v
+        return w * v
 
 
     def propagation(self, data):
@@ -152,90 +151,93 @@ class Brain:
             self.aLi[i] = data[i]
 
         # Propagation entre la couchée d'entée et la couche cachée
-        for i in range(li):
+        for i in range(self.li):
             sum = 0
-            for j in range(self.lo):
+            for j in range(self.lh):
                 """
-                    Chaque neurones de la couche cachée est connecté à
-                    chaque neurone de la couche d'entée.
+                    Chaque neurone de la couche cachée est connecté à
+                    chaque neurone de la couche d'entrée.
                     On fait la summuation de toutes les entrées d'un neurone en
                     couche cachée.
                     """
-                sum = summation(self.aLi[i], self.wIH[i][j])
-            self.aLh[i] = sigmoid(sum)
+                sum += self.summation(self.aLi[i], self.wIH[i][j])
+                self.aLh[j] = self.sigmoid(sum)
 
             # Propagation entre la couchée cachée et la couche de sortie
         for i in range(self.lo):
             sum = 0
             for j in range(self.lh):
                 # Meme chose que pour la boucle précédente
-                sum = summation(self.aLh[j], self.wHO[j][i])
-            self.aLo[i] = sigmoid(sum)
+                sum += self.summation(self.aLh[j], self.wHO[j][i])
+            self.aLo[i] = self.sigmoid(sum)
 
         return self.aLo
 
 
-    def backpropagation(self, data, learningError, momentum):
+    def backpropagation(self, desired, learningError, momentum):
         """
         TODO : Rien normalement
-        :param data : Les inputs du réseau
+        :param desired : Les inputs du réseau
         :param learningError :  Le taux d'erreur
         :param momentum : Ce que l'on décide de changer en + ou - selon le taux d'erreur. Currently 0.2
 
         :return error
         """
 
+
         for i in range(self.lo):
-            error = data[i] - self.aOL[i]  # Différence entre
-            output_deltas[i] = dsigmoid(self.aOL[i]) * error  # On utilise f', la dérivée de la f (sigmoid)
+            error = desired[i] - self.aLo[i]  # Différence entre
+            self.output_deltas[i] = self.dsigmoid(self.aLo[i]) * error  # On utilise f', la dérivée de la f (sigmoid)
 
         """
-        On parcours de la même façon la matrice entre la couche d'entrée et cachée:
+        On parcourt de la même façon la matrice entre la couche d'entrée et cachée:
         On initialise la variable error.
-
         """
+
         for i in range(self.lh):
             error = self.remp
             for j in range(self.lo):
-                error = error + output_deltas[j] * self.wHO[i][j]
-                hidden_deltas[i] = dsigmoid(self.aHL[i]) * error
+                error += self.output_deltas[j] * self.wHO[i][j]
+            self.hidden_deltas[i] = self.dsigmoid(self.aLh[i]) * error
 
-        # On mes à jour les poids
+        # On met à jour les poids
         for i in range(self.lh):
             for j in range(self.lo):
-                change = output_deltas[j] * self.aHL[i]
+                change = self.output_deltas[j] * self.aLh[i]
                 self.wIH[i][j] = self.wHO[i][j] + learningError * change + momentum * self.chgHO[i][j]
                 self.chgHO[i][j] = change
 
         # Mise à jour des poids
         for i in range(self.li):
             for j in range(self.lh):
-                change = hidden_deltas[j] * self.aIL[i]
-                self.wIH[i][j] = self.wIH[i][j] + learningError * change + momentum * self.chgIH[i][
-                    j]  # ... pour changer les poids entre la couche cachée et la couche d'entrée
+                change = self.hidden_deltas[j] * self.aLi[i]
+                self.wIH[i][j] = self.wIH[i][j] + learningError * change + momentum * self.chgIH[i][j] # ... pour changer les poids entre la couche cachée et la couche d'entrée
                 self.chgIH[i][j] = change
 
         error = self.remp
-        for i in range(len(data)):
-            error = error + 0.5 * (data[i] - self.aOL[i]) ** 2
+        for i in range(len(desired)):
+            error += 0.5 * (desired[i] - self.aLo[0]) ** 2
 
         return error
 
-    def training(self):
+    def training(self, data, desired):
         """
         TODO : Vérifier l'insertion des données
         Fonction d'entrainement utilisant la backpropagation
         """
+        mErrorTesting = []
         for i in range(self.iterations):
-            error = 0.0
-            data = d[0]
-            result = d[1]
-            self.propagation(data)
-            error = error + self.backpropa(targets, self.pas, self.momentum)
-            mErrorTesting.append([error])  # Pour ploter les erreurs dans le graphique
-            print('error %-.5f' % error)
+            for lac in data:
+                self.propagation(lac)
+                error = self.backpropagation(desired, self.pas, self.momentum)
+                mErrorTesting.append([error])  # Pour ploter les erreurs dans le graphique
+                print('error %-.5f' % error)
 
-            return error
+        return mErrorTesting
+
+    def test(self, patterns):
+        for p in patterns:
+            print(p[0], '->', self.update(p[0]))
 
     def trainHyperOpt(self):
         """
@@ -247,7 +249,7 @@ class Brain:
 
     def pickle(self):
         """
-        TODO : Ecrire la fonction
+        TODO: Ecrire la fonction
 
         :return: retourne un pickle (un binaire de l'état de l'instance de la classe brain )
         """
@@ -256,10 +258,9 @@ class Brain:
 
 
 
+
 if __name__ == '__main__':
     brain = Brain(li, lh, lo, iterations, pas, momentum)
-
-    brain.trainHyperOpt()
 
     pl.plot(mErrorTesting, 'r', label='error during training', lw=1)
     pl.title('errors/iterations')

@@ -5,7 +5,7 @@ try:
 except ImportError:
     import gdal
 
-import sys
+import os as sys
 
 """
 Input : longitude : float
