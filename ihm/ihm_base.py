@@ -3,10 +3,10 @@
 from PyQt4 import QtGui, QtCore
 import sys
 
-import FenouilMainUI
+import MainUI
 
 
-class FenouilMainWindow(QtGui.QMainWindow, FenouilMainUI.Ui_FenouilMain):
+class FenouilMainWindow(QtGui.QMainWindow, MainUI.Ui_FenouilMain):
     def __init__(self, parent=None):
         super(FenouilMainWindow, self).__init__(parent)
         self.setupUi(self)
