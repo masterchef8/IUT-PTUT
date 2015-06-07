@@ -1,1 +1,3 @@
-pyuic4 FenouilMain.ui -o FenouilMainUI.py
+#!/usr/bin/env bash
+
+pyuic4 MainUI.ui -o MainUI.py
